@@ -1,6 +1,7 @@
 package food.domain;
 
 import food.StoreApplication;
+import food.domain.CookLated;
 import food.domain.Rejected;
 import java.time.LocalDate;
 import java.util.Date;
@@ -30,6 +31,9 @@ public class Cooking {
     public void onPostPersist() {
         Rejected rejected = new Rejected(this);
         rejected.publishAfterCommit();
+
+        CookLated cookLated = new CookLated(this);
+        cookLated.publishAfterCommit();
     }
 
     public static CookingRepository repository() {
